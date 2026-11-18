@@ -1,0 +1,6 @@
+# Set the end-effector frame with respect to the robot flange
+geometry_msgs/Pose flange_pose_ee
+string ee_name   # must be empty (named end effectors are not supported)
+---
+bool success
+string message

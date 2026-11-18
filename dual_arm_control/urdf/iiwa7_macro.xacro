@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<!-- Generated: kinematics identical to the DH model used by the controllers (see README).
+     Visual meshes: iiwa7 (see meshes/LICENSES.md). -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="iiwa7" params="prefix:=''">
+    <link name="${prefix}iiwa_link0">
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_0.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint1" type="revolute">
+      <parent link="${prefix}iiwa_link0"/>
+      <child link="${prefix}iiwa_link1"/>
+      <origin xyz="0 0 0.34" rpy="0 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967060" upper="2.967060" effort="100" velocity="1.7104"/>
+    </joint>
+    <link name="${prefix}iiwa_link1">
+      <visual>
+        <origin xyz="0 0 -0.34" rpy="0 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_1.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint2" type="revolute">
+      <parent link="${prefix}iiwa_link1"/>
+      <child link="${prefix}iiwa_link2"/>
+      <origin xyz="0 0 0" rpy="-1.570796327 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.094395" upper="2.094395" effort="100" velocity="1.7104"/>
+    </joint>
+    <link name="${prefix}iiwa_link2">
+      <visual>
+        <origin xyz="0 0.34 0" rpy="1.570796327 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_2.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint3" type="revolute">
+      <parent link="${prefix}iiwa_link2"/>
+      <child link="${prefix}iiwa_link3"/>
+      <origin xyz="0 0 0" rpy="1.570796327 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967060" upper="2.967060" effort="100" velocity="1.7453"/>
+    </joint>
+    <link name="${prefix}iiwa_link3">
+      <visual>
+        <origin xyz="0 0 -0.34" rpy="0 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_3.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint4" type="revolute">
+      <parent link="${prefix}iiwa_link3"/>
+      <child link="${prefix}iiwa_link4"/>
+      <origin xyz="0 0 0.4" rpy="-1.570796327 0 0"/>
+      <axis xyz="0 0 -1"/>
+      <limit lower="-2.094395" upper="2.094395" effort="100" velocity="2.2689"/>
+    </joint>
+    <link name="${prefix}iiwa_link4">
+      <visual>
+        <origin xyz="0 0.74 0" rpy="1.570796327 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_4.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint5" type="revolute">
+      <parent link="${prefix}iiwa_link4"/>
+      <child link="${prefix}iiwa_link5"/>
+      <origin xyz="0 0 0" rpy="1.570796327 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.967060" upper="2.967060" effort="100" velocity="2.4435"/>
+    </joint>
+    <link name="${prefix}iiwa_link5">
+      <visual>
+        <origin xyz="0 0 -0.74" rpy="0 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_5.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint6" type="revolute">
+      <parent link="${prefix}iiwa_link5"/>
+      <child link="${prefix}iiwa_link6"/>
+      <origin xyz="0 0 0.4" rpy="-1.570796327 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-2.094395" upper="2.094395" effort="100" velocity="3.1416"/>
+    </joint>
+    <link name="${prefix}iiwa_link6">
+      <visual>
+        <origin xyz="0 1.14 0" rpy="1.570796327 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_6.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_joint7" type="revolute">
+      <parent link="${prefix}iiwa_link6"/>
+      <child link="${prefix}iiwa_link7"/>
+      <origin xyz="0 0 0" rpy="1.570796327 0 0"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="-3.054326" upper="3.054326" effort="100" velocity="3.1416"/>
+    </joint>
+    <link name="${prefix}iiwa_link7">
+      <visual>
+        <origin xyz="0 0 -1.14" rpy="0 0 0"/>
+        <geometry><mesh filename="package://dual_arm_control/meshes/iiwa7/link_7.dae"/></geometry>
+      </visual>
+    </link>
+    <joint name="${prefix}iiwa_link8_joint" type="fixed">
+      <parent link="${prefix}iiwa_link7"/>
+      <child link="${prefix}iiwa_link8"/>
+      <origin xyz="0 0 0.126" rpy="0 0 0"/>
+    </joint>
+    <link name="${prefix}iiwa_link8"/>
+  </xacro:macro>
+</robot>

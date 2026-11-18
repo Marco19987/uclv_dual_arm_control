@@ -1,0 +1,6 @@
+# Quintic Cartesian trajectory through the given points
+CartesianTrajectory trajectory
+---
+string message
+---
+builtin_interfaces/Duration time_left

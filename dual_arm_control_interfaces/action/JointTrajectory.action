@@ -1,0 +1,6 @@
+# Quintic joint-space trajectory through the given points (velocities/accelerations at the waypoints)
+trajectory_msgs/JointTrajectory trajectory
+---
+string message
+---
+builtin_interfaces/Duration time_left

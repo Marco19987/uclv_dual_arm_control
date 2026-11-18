@@ -1,0 +1,6 @@
+# Activate/deactivate the null-space joint controller.
+# If qdes.position is empty the current joint configuration is used as reference.
+bool activate
+sensor_msgs/JointState qdes
+---
+bool success

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>dual_arm_control</name>
+  <version>1.0.0</version>
+  <description>
+    Cooperative object transport with two heterogeneous robots: IESEKF on SE(3) fusing visual-tactile
+    measurements (object pose, internal wrenches, online robot-robot calibration) and pose/internal-wrench
+    controllers. Simulation release accompanying the RA-L 2026 paper
+    "Cooperative Object Transport and Assembly: Pose/Force Control by Visual-Tactile Feedback".
+  </description>
+  <maintainer email="marco.desimone@unicampania.it">Marco De Simone</maintainer>
+  <license>Apache-2.0</license>
+  <author>Marco De Simone</author>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
+  <depend>rcl_interfaces</depend>
+  <depend>std_msgs</depend>
+  <depend>std_srvs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>visualization_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>ament_index_cpp</depend>
+  <depend>eigen</depend>
+  <depend>yaml-cpp</depend>
+  <depend>ikfom_toolkit</depend>
+  <depend>sensor_msgs</depend>
+  <depend>pinocchio</depend>
+  <depend>dual_arm_control_interfaces</depend>
+
+  <!-- used at runtime by the launch files -->
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>xacro</exec_depend>
+  <exec_depend>rviz2</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
+</package>

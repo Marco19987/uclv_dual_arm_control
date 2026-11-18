@@ -1,0 +1,246 @@
+# Yaml file containing the transformations between the the aruco markers and the frames of interest
+# The transformations are expressed in the frame of the aruco markers
+# define the transform of the frame wrt the aruco marker
+# in the file are also defined the object parameters such as mass and inertia
+# the viscous friction with the air is also defined
+# there are also the transformations between the object and the grippers of the robots, 
+# and the relative transformations between robots ans base1 and base 
+
+
+# b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+  # translation: [-0.5, -0.5, -0.5] 
+  # quaternion: [-0.0, 0.0, 0.1 ,0.9] # [qx, qy, qz, qw] 
+  # name: "b1Tb2"
+
+# calib resin block 3
+b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+  translation: [1.455302836092457,-0.005678333309271455,0.005200354317130842] 
+  quaternion:   [-0.004997248580202519, -0.0018074328186275992, 0.7082671732847742, 0.7059244803379616]
+  name: "b1Tb2"
+
+#calib resin block 1
+# b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+#   translation: [ 1.4535294611358178, -0.012913888148798099, 0.004488886759107866] 
+#   quaternion:  [-0.008719807205525561,-0.0022691293848397997,0.7055881710552119,0.7085648515704794]
+#   name: "b1Tb2"
+
+#calib resin block 5
+# b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+#   translation: [ 1.4504906466895837, -0.006244532994202415, 0.03710340517164222] 
+#   quaternion:  [-0.01159341661326112, -0.01610216195461328, 0.706328333308232, 0.707606245476701]
+#   name: "b1Tb2"
+
+#calib resin block 2
+# b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+#   translation: [ 1.4604308176124974, -0.013702803940586754, 0.0294249839046493] 
+#   quaternion:  [-0.008951955724172437, -0.012800975302849392, 0.7043964988405266, 0.7096348144934943]
+#   name: "b1Tb2"
+
+
+# b1Tb2: #transformation between the base of robot 1 and the base of robot 2
+#   translation: [0.0,0.5,0.9] #[-0.0158, -0.00468, 0.42177] camera breadboard 
+#   quaternion: [0.707106781186548, 0.707106781186548, 0.0,0.0] # [qx, qy, qz, qw] 
+#   name: "b1Tb2"
+
+bTb1: #transformation between the base frame and the base of robot 1
+  translation: [0.0, 0.0, 0.0]
+  quaternion: [0.0, 0.0, 0.0, 1.0]
+  name: "bTb1"
+
+gravity_vector: [0.0, 0.0, 0.0] # gravity vector
+
+viscous_friction:  [0.0001,0.0001,0.0001,0.0001,0.0001,0.0001] # viscous friction with the air
+
+# K estimated 
+K_1:  [5641.0,5641.0,4400.0,1.28,1.28,1.28] # stiffness spring robot 1
+B_1:  [50.0,50.0,50.0,0.5,0.5,0.5] # damping robot 1
+K_2:  [5641.0,5641.0,4400.0,1.28,1.28,1.28] # stiffness spring robot 2
+B_2:  [50.0,50.0,50.0,0.5,0.5,0.5]  # damping robot 2
+
+# exp K low 
+# K_1:  [1641.0,1641.0,1400.0,0.7,0.7,0.7] # stiffness spring robot 1 
+# B_1:  [50.0,50.0,50.0,0.5,0.5,0.5] # damping robot 1
+# K_2:  [1641.0,1641.0,1400.0,0.7,0.7,0.7] # stiffness spring robot 2
+# B_2:  [50.0,50.0,50.0,0.5,0.5,0.5]  # damping robot 2
+
+# exp K diff 
+# K_1:  [7641.0,7641.0,6400.0,1.8,1.8,1.8] # stiffness spring robot 1 
+# B_1:  [50.0,50.0,50.0,0.5,0.5,0.5] # damping robot 1
+# K_2:  [1641.0,1641.0,1400.0,0.7,0.7,0.7] # stiffness spring robot 2
+# B_2:  [50.0,50.0,50.0,0.5,0.5,0.5]  # damping robot 2
+
+K_grasp: [0.0,0.0,0.0,0.0,0.0,0.0]
+
+
+
+resin_block_1: # first object
+  inertia_matrix: [0.271,0.271,0.271,0.1,0.1,0.1] #[0.280,0.280,0.280,0.0001689,0.0005851,0.0004985]
+  object_size: [0.139, 0.074, 0.041] #hx.hy,hz [m]
+  rgb_color: [0.8740,0.3436,0.3436] 
+  aruco_transforms:
+    # - aruco_id: 0
+    #   frame_transform: 
+    #     translation: [0.0, 0.0, -0.0205] 
+    #     quaternion: [0.0, 0.0, 0.0, 1.0] # [qx, qy, qz, qw] 
+    #   name: "side1_T_object"
+    - aruco_id: 1
+      frame_transform: 
+        translation: [0.0, 0.0, -0.0695] 
+        quaternion: [0.0, -0.7071068, 0.0, 0.7071068] # [qx, qy, qz, qw] 
+      name: "side2_T_object"
+    - aruco_id: 2
+      frame_transform:
+        translation: [0.0, 0.0, -0.0695]
+        quaternion: [0.0, 0.7071068, 0.0, 0.7071068]
+      name: "side3_T_object"
+    # - aruco_id: 3
+    #   frame_transform:
+    #     translation: [0.0, 0.0, -0.0205]
+    #     quaternion: [0.0, 1.0, 0.0, 0.0]
+    #  name: "side4_T_object"
+    - aruco_id: 4
+      frame_transform:
+        translation: [0.0, 0.0, -0.037]
+        quaternion: [0.7071068, 0.0, 0.0, 0.7071068]
+      name: "side5_T_object"
+    - aruco_id: 5
+      frame_transform:
+        translation: [0.00275, 0.0, -0.037]
+        quaternion:  [-0.7071068, 0.0, 0.0, 0.7071068] #[-0.7071068, 0.0, 0.0, 0.7071068]
+      name: "side6_T_object"
+
+resin_block_2: # first object
+  inertia_matrix: [0.412,0.412,0.412,0.1,0.1,0.1]
+  object_size: [0.37,0.04,0.04] #hx.hy,hz [m]
+  rgb_color: [0.1449,0.6829,0.7160] 
+  aruco_transforms:
+    - aruco_id: 11
+      frame_transform: 
+        translation: [-0.1204, 0.0, -0.02] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side1_T_object"
+    - aruco_id: 6
+      frame_transform: 
+        translation: [0.1223, 0.0, -0.02] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side2_T_object"
+    - aruco_id: 9
+      frame_transform:
+        translation: [0.0, 0.0, -0.1850]
+        quaternion: [-0.7071, 0, 0.7071, 0]
+      name: "side3_T_object"
+    - aruco_id: 10
+      frame_transform:
+        translation: [0.0, 0.0, -0.1857]
+        quaternion: [0.7071, 0, 0.7071, 0]
+      name: "side4_T_object"
+
+
+
+resin_block_3: # first object
+  inertia_matrix: [0.680,0.680,0.680,0.1,0.1,0.1]
+  object_size: [0.28,0.09,0.04] #hx.hy,hz [m]
+  rgb_color: [0.7100,0.6894,0.1436]
+  aruco_transforms:
+    - aruco_id: 15
+      frame_transform: 
+        translation: [-0.115, 0.0, -0.045] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side1_T_object"
+    - aruco_id: 16
+      frame_transform: 
+        translation: [0.1155, 0.001, -0.045] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side2_T_object"
+    - aruco_id: 14
+      frame_transform:
+        translation: [0.0025, 0.0, -0.14]
+        quaternion: [-0.7071, 0, 0.7071, 0]
+      name: "side3_T_object"
+    - aruco_id: 13
+      frame_transform:
+        translation: [0.0025, 0.0, -0.14]
+        quaternion: [0.7071, 0, 0.7071, 0]
+      name: "side4_T_object"
+
+
+resin_block_4: # first object
+  inertia_matrix: [0.346,0.346,0.346,0.01,0.01,0.01]
+  object_size: [0.14,0.075,0.05] #hx.hy,hz [m]
+  rgb_color: [0.6511, 0.4238, 0.6296] 
+  aruco_transforms:
+    - aruco_id: 22
+      frame_transform: 
+        translation: [-0.0, 0.0, -0.0375] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side1_T_object"
+    - aruco_id: 21
+      frame_transform:
+        translation: [0.0, 0.0, -0.07]
+        quaternion: [-0.7071, 0, 0.7071, 0]
+      name: "side2_T_object"
+    - aruco_id: 20
+      frame_transform:
+        translation: [0.0, 0.0, -0.07]
+        quaternion: [0.7071, 0, 0.7071, 0]
+      name: "side3_T_object"
+
+resin_block_5: # first object
+  inertia_matrix: [0.271,0.271,0.271,0.1,0.1,0.1] #[0.280,0.280,0.280,0.0001689,0.0005851,0.0004985]
+  object_size: [0.139, 0.076, 0.041] #hx.hy,hz [m]
+  rgb_color: [0.6511, 0.4238, 0.6296] 
+  aruco_transforms:
+    - aruco_id: 31
+      frame_transform: 
+        translation: [-0.001, 0.0, -0.038] 
+        quaternion: [0 ,-0.7071 ,0.7071,0] # [qx, qy, qz, qw] 
+      name: "side1_T_object"
+    - aruco_id: 34
+      frame_transform: 
+        translation: [0.0, 0.0, -0.0695]
+        quaternion: [-0.7071, 0, 0.7071, 0]
+      name: "side2_T_object"
+    - aruco_id: 33
+      frame_transform: 
+        translation: [0.001, 0.002, -0.0695]
+        quaternion: [0.7071, 0, 0.7071, 0]
+      name: "side3_T_object"
+    - aruco_id: 32
+      frame_transform: 
+        translation: [0.0, 0.0, -0.038]
+        quaternion: [0.7071, 0, 0, 0.7071]
+      name: "side4_T_object"
+
+base_construction_object: # first object
+  inertia_matrix: [0.271,0.271,0.271,0.1,0.1,0.1] #[0.280,0.280,0.280,0.0001689,0.0005851,0.0004985]
+  object_size: [0.139, 0.076, 0.041] #hx.hy,hz [m]
+  rgb_color: [0.6511, 0.4238, 0.6296] 
+  aruco_transforms:
+    - aruco_id: 18
+      frame_transform: 
+        translation: [0.126, 0.038, -0.0] 
+        quaternion: [0.0 ,0.0, 0.0, 1.0] # [qx, qy, qz, qw] 
+      name: "side1_T_object"
+    - aruco_id: 23
+      frame_transform: 
+        translation: [0.126, -0.038, -0.0]
+        quaternion: [0.0 ,0.0, 0.0, 1.0]
+      name: "side2_T_object"
+    - aruco_id: 19
+      frame_transform: 
+        translation: [-0.126, 0.038, -0.0]
+        quaternion: [0.0 ,0.0, 0.0, 1.0]
+      name: "side3_T_object"
+    - aruco_id: 22
+      frame_transform: 
+        translation: [-0.126, -0.038, -0.0]
+        quaternion: [0.0 ,0.0, 0.0, 1.0]
+      name: "side4_T_object"
+    
+  
+
+  
+
+
+
+

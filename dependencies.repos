@@ -1,0 +1,5 @@
+repositories:
+  IKFoM:
+    type: git
+    url: https://github.com/Marco19987/IKFoM.git
+    version: main

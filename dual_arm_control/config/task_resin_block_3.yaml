@@ -1,0 +1,314 @@
+# Yaml file containing the task istructions for the cooperative manipulation task
+
+
+#fixed orientation [0.0, 0.7071, -0.7071, 0.0] 
+#90 deg [0.5,-0.5,0.5,0.5] - object z axis
+#60 deg [0.3536,-0.6124,0.6124,0.3536] - object z axis
+#45 deg [0.2706,-0.6533,0.6533,0.2706] - object z axis
+
+
+task:
+  -
+    name: "set selection matrix"
+    H_sel_robot1: [True,True,True,True,True,True] # selection matrix for robot 1
+    H_sel_robot2: [True,True,True,True,True,True]  # selection matrix for robot 2
+  - 
+    name: "deactivate robot pose controllers"
+    activate_robot1_pose_control: False
+    activate_robot2_pose_control: False
+  - 
+    name: "HOMING: move robots to home position"
+    q_robot1: [0.36377689261546664, -0.34231440416168407, -0.4789286957861268, -1.715860096249368, -0.12060741783645992, 1.0033422588198482, 1.4949190456810695]
+    gripper_robot1: "home"
+    duration_robot1: 10.0
+    wait_robot1: False
+    q_robot2: [2.5087876319885254, -0.4012802541255951, 0.6835479140281677, -0.2843787670135498, 0.9102581143379211, -1.5581797361373901, -1.5504906177520752] 
+    gripper_robot2: "home"
+    duration_robot2: 10.0
+    wait_robot2: True
+    wait_for_enter: True
+  - 
+    name: "HOMING: move robots to vision position"
+    q_robot1: [0.14126297248738806, 0.24920117114367682, -0.4788262306691515, -1.1344209171446762, 0.2798409512229261, 1.1500271343713018, 1.3023451948011686]
+    duration_robot1: 3.0
+    wait_robot1: False
+    q_robot2: [2.3027329444885254,-0.7407456040382385,-1.5187928511295468e-05,-0.4212068021297455,0.6077145934104919,-1.109964370727539,-0.7147050499916077]
+    duration_robot2: 3.0
+    wait_robot2: True
+    wait_for_enter: True
+
+  - 
+    name: "Remove aruco ids"
+    robot1_filter_aruco: []
+    robot2_filter_aruco: []
+  
+  - 
+    name: "Remove aruco ids"
+    robot2_filter_aruco: [15]
+
+  - 
+    name: "EKF initialization"
+    command: "init_ekf"
+    object_name: "resin_block_3"
+    bTo_initial: # object initial pose - used only for simulation
+        translation: [0.8515177034049561, -0.10041797955518944, 0.3086474064581332]
+        quaternion: [ 0.4982682946697598,-0.512507072646556,0.4878328820798418,0.5010831130419596]  # [qx, qy, qz, qw]
+    wait_for_enter: True
+  -
+    name: "read grasp poses from yaml"
+    command: "read_grasp_poses"
+    oTg1:         # transformation between the object and the gripper of robot 1 - defines how the object is grasped
+        translation: [0.085, -0.0, -0.0]
+        quaternion: [0.0, 0.0, 0.8944, 0.4472] #[qx, qy, qz, qw] 
+    oTg2:         # transformation between the object and the gripper of robot 2 - defines how the object is grasped
+        translation: [-0.09, -0.01, 0.0]
+        quaternion: [-0.2963, 0.9551, 0.0, 0.0]
+  - 
+    name: "activate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: True
+    activate_integrator_robot2: True
+    wait_for_enter: True
+  -
+    name: "WAIT FOR ENTER BEFORE PREGRASP"
+    wait_for_enter: True
+  - 
+    name: "activate robot pose controllers"
+    activate_robot1_pose_control: True
+    activate_robot2_pose_control: True
+    
+  - 
+    name: "PREGRASP: approach object robot1"
+    command: "movec_robot1" 
+    offset_robot1: [0.0, -0.1, 0.0] # offset pregrasp - expressed in the grasp frame
+    duration_robot1: 12.0
+    wait_robot1: False
+    offset_start_time_robot1: 0.5
+  - 
+    name: "PREGRASP: approach object robot2"
+    command: "movec_robot2" 
+    offset_robot2: [0.0, -0.1, 0.0] # offset pregrasp - expressed in the grasp frame
+    duration_robot2: 12.0
+    wait_robot2: True
+    offset_start_time_robot2: 0.5
+  - 
+    name: "Restore aruco ids"
+    robot2_filter_aruco: []
+
+  -
+    name: "WAIT FOR ENTER BEFORE GRASP"
+    wait_for_enter: True
+  -
+    name: "GRASP: move robot1 to grasp position"
+    command: "movec_robot1"
+    offset_robot1: [0.0, -0.0, 0.0]
+    wait_robot1: False
+    duration_robot1: 8.0
+  -
+    name: "GRASP: move robot2 to grasp position"
+    command: "movec_robot2"
+    offset_robot2: [0.0, -0.0, 0.0]
+    wait_robot1: True
+    duration_robot2: 8.0
+  -
+    name: "sleep before robot pose controllers deactivation"
+    sleep_time: 5.0
+  - 
+    name: "deactivate robot pose controllers"
+    activate_robot1_pose_control: False
+    activate_robot2_pose_control: False
+  - 
+    name: "deactivate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: False
+    activate_integrator_robot2: False
+    wait_for_enter: True
+  -
+    name: "set selection matrix"
+    H_sel_robot1: [True,True,True,True,True,False] # selection matrix for robot 1
+    H_sel_robot2: [True,True,True,True,True,False]  # selection matrix for robot 2
+  - 
+    name: "home GRIPPERS"
+    gripper_robot1: "home"
+    gripper_robot2: "home"
+    wait_for_enter: True
+    sleep_time: 5.0
+  - 
+    name: "CLOSE GRIPPERS"
+    gripper_robot1: "grasp"
+    grasp_force_robot1: 3.0
+    gripper_robot2: "grasp"
+    grasp_force_robot2: 3.0
+    sleep_time: 8.0
+  - 
+    name: "GRIPPERS modality: pivoting"
+    gripper_robot1: "pivoting"
+    gripper_robot2: "pivoting"
+  - 
+    name: "EKF: set object grasped"
+    ekf_object_grasped: True
+  - 
+    name: "activate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: True
+    activate_integrator_robot2: True
+  - 
+    name: "Cooperative manipulation: lift object with both robots - no control"
+    command: "movec_cooperative"
+    offset_coop_object_pose: [0.0, 0.0, 0.01] # offset - expressed in the base frame
+    duration_cooperative: 5.0
+  -
+    name: "sleep before activating force controllers"
+    sleep_time: 2.5 # time to wait after the motion
+  - 
+    name: "activate internal force controllers"
+    activate_force_control_robot1: True
+    activate_force_control_robot2: True
+  -
+    name: "sleep before activating pose controllers"
+    sleep_time: 5.0 # time to wait after the motion
+  - 
+    name: "activate pose controllers"
+    activate_pose_control_robot1: True
+    activate_pose_control_robot2: True
+    
+  - name: "Cooperative manipulation: move object to position 1"
+    command: "movec_cooperative"
+    offset_coop_object_pose: [0.0, 0.0, 0.07] # offset - expressed in the base frame
+    duration_cooperative: 8.0
+    sleep_time: 1.5 # time to wait after the motion
+
+  - name: "Cooperative manipulation: move object to position 2"
+    command: "movec_cooperative"
+    bTo_des: 
+        reference_frame : "desired_resin_block_3"
+        translation: [0.0, 0.0, 0.1] 
+        premultiply: True # if True delta transform is in base frame
+    duration_cooperative: 30.0 
+    sleep_time: 1.5 # time to wait after the motion
+
+  -
+    name: "INTERNAL MOTION: robots reconfiguration"
+    q_null_robot1: [0.07006529150778694, 0.5327142566719223, 0.5571028733924773, -1.5480839435956617, -1.181453115661754, 0.7008785184095607, 2.859000735496541]
+    q_null_robot2: [0.8541842699050903, 0.06439681351184845, 1.5187928511295468e-05, -0.3815511167049408, -0.915224552154541, -0.7161449790000916, 1.3742908239364624]
+    q_null_activate_robot1: True
+    q_null_activate_robot2: True
+
+  
+  - name: "Cooperative manipulation: move object to position 3"
+    command: "movec_cooperative"
+    bTo_des: 
+        reference_frame : "desired_resin_block_3"
+    duration_cooperative: 20.0
+    sleep_time: 1.5 # time to wait after the motion
+
+  - 
+    name: "Remove aruco ids for the last movement"
+    robot2_filter_aruco: [15, 16, 14, 13]
+
+  # force control placement
+  # deactivate pose control
+  -
+    name: "sleep before deactivating pose controllers"
+    sleep_time: 20.0 
+
+  - 
+    name: "deactivate pose controllers before object placement"
+    activate_pose_control_robot1: False
+    activate_pose_control_robot2: False
+  - 
+    name: "force control placement"
+    command: "cooperative_object_placement"
+
+  #---------------------------------
+    
+  - 
+    name: "deactivate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: False
+    activate_integrator_robot2: False
+
+  - 
+    name: "deactivate controllers"
+    activate_force_control_robot1: False
+    activate_force_control_robot2: False
+    activate_pose_control_robot1: False
+    activate_pose_control_robot2: False
+  -
+    name: "INTERNAL MOTION: deactivation"
+    q_null_activate_robot1: False
+    q_null_activate_robot2: False
+    wait_for_enter: True
+  
+  - 
+    name: "OPEN GRIPPERS SLOWLY"
+    gripper_robot1: "grasp"
+    grasp_force_robot1: 1.0
+    gripper_robot2: "grasp"
+    grasp_force_robot2: 1.0
+    sleep_time: 1.0
+  - 
+    name: "OPEN GRIPPERS SLOWLY"
+    gripper_robot1: "grasp"
+    grasp_force_robot1: 0.0
+    gripper_robot2: "grasp"
+    grasp_force_robot2: 0.0
+    wait_for_enter: True
+  - 
+    name: "EKF: release object"
+    ekf_object_grasped: False
+    wait_for_enter: True
+  - 
+    name: "GRIPPERS modality: homing"
+    gripper_robot1: "home"
+    gripper_robot2: "home"
+    wait_for_enter: True
+  - 
+    name: "activate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: True
+    activate_integrator_robot2: True
+    wait_for_enter: True
+
+  - name: "WAIT FOR ENTER BEFORE POSTGRASP"
+    wait_for_enter: True
+  - 
+    name: "POSTGRASP: movement robot1"
+    command: "movec_robot1" 
+    offset_robot1_EE: [0.0, -0.1, 0.0] # offset postgrasp - expressed in the EE frame
+    duration_robot1: 5.0
+    wait_robot1: False
+  - 
+    name: "POSTGRASP: movement robot2"
+    command: "movec_robot2" 
+    offset_robot2_EE: [0.0, -0.1, 0.0] # offset postgrasp - expressed in the EE frame
+    duration_robot2: 5.0
+    wait_robot2: True
+
+  - 
+    name: "deactivate joint integrators"
+    command: "activate_joint_integrators"
+    activate_integrator_robot1: False
+    activate_integrator_robot2: False
+    wait_for_enter: True
+
+  - 
+    name: "HOMING: move robots to preprehome position"
+    q_robot1: [1.1894175438906396, -0.07426899805994243, -0.4498701861253961, -1.557896566986563, -0.47650486234795375, 1.2224735715962676, 2.366775482241883]
+    gripper_robot1: "home"
+    duration_robot1: 15.0
+    wait_robot1: False
+    q_robot2: [0.6484030485153198, -0.24246008694171906, -0.3264341354370117, 0.2550053000450134, 2.4280333518981934, 1.7172138690948486, -2.125187397003174]
+    gripper_robot2: "home"
+    duration_robot2: 15.0
+    wait_robot2: True
+    wait_for_enter: True
+
+
+  
+
+
+
+
+
+

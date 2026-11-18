@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+   
+	<xacro:macro name="gripper_yaskawa" params="parent prefix">
+    
+    <xacro:property name="deg" value="0.017453293" /> <!--degrees to radians-->
+   
+
+    <link name="${prefix}gripper_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/WSG32.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="grey">
+                <color rgba="0.7 0.7 0.7 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/WSG32.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="${prefix}finger_right">
+        <visual>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+    </link>
+
+    <link name="${prefix}finger_left">
+        <visual>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <material name="black">
+                <color rgba="0 0 0 1"/>
+            </material>
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://dual_arm_control/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+        </collision>
+        <inertial>
+            <mass value="0.5"/>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+        </inertial>
+    </link>
+
+
+
+
+    <joint name="${prefix}gripper_joint" type="fixed">
+        <origin xyz="0 0.0075 0.01" rpy="${-90*deg} 0 ${-90*deg}"/>
+        <parent link="${parent}"/>
+        <child link="${prefix}gripper_link"/>
+    </joint>
+
+
+    <joint name="${prefix}finger_right_joint" type="fixed">
+        <origin xyz="-0.0537481 -0.0712022 0.0012017" rpy="0 ${-180*deg} 0"/>
+        <parent link="${prefix}gripper_link"/>
+        <child link="${prefix}finger_right"/>
+    </joint>
+
+    <joint name="${prefix}finger_left_joint" type="fixed">
+        <origin xyz="0.0562992 -0.0707962 -0.0012468" rpy="0 ${-0*deg} 0"/>
+        <parent link="${prefix}gripper_link"/>
+        <child link="${prefix}finger_left"/>
+    </joint>
+
+
+
+  
+  
+	</xacro:macro>
+</robot>
+

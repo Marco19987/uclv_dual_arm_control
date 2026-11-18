@@ -1,0 +1,103 @@
+#* end effectors definition Version 2.0
+iiwa8_T_tactile: 
+  translation: [0.0, 0.0, 0.2059]
+  quaternion: [0.500, -0.500, -0.500, 0.500] # [qx, qy, qz, qw]
+
+yaskawa_tool0_T_tactile:
+  translation: [-0.000, 0.006, 0.173]
+  quaternion: [-0.000, 0.707, 0.707, -0.000] # [qx, qy, qz, qw]
+
+
+# camera fkine
+
+iiwa8_T_camera:  
+  translation: [0.0, 0.0990, -0.0190] 
+  quaternion: [0, -0.1301, 0.9915, 0.0]  # [qx, qy, qz, qw]
+
+yaskawa_tool0_T_camera:
+  translation: [0.103, 0.002, -0.004] 
+  quaternion: [-0.133, -0.133, 0.694, 0.694] # [qx, qy, qz, qw]
+
+
+#construction base for ekf
+# construction_base:         
+#   translation: [ 0.8368186873459118, 0.217409842, 0.321584921]
+#   quaternion: [ -0.010671147485958182, 0.0015017461147837983, 0.9998593643793965, 0.01285001294845547]  #[qx, qy, qz, qw]
+
+construction_base:         
+  translation: [ 0.836857375, 0.218146971, 0.319984092]
+  quaternion: [ -0.006155492224295581, -0.0068390097532867716, 0.9998963357530675, 0.011074999261957708]  #[qx, qy, qz, qw]
+
+
+desired_resin_block_3: 
+  reference_frame : "construction_base"
+  translation: [0.0, 0.0, 0.0] #0.045 cm + dx
+  quaternion: [-0.7071, 0.0, 0.0, 0.7071]  #[qx, qy, qz, qw]  
+
+# actual_resin_block_3:
+#   translation: [0.8357850396712572, 0.2132418292439513, 0.3024399939420438] #0.045 cm + dx
+#   quaternion: [ 0.006986544477378064, 0.7072509833743338, -0.7067751811581805, -0.01469959221661324]  #[qx, qy, qz, qw]  
+
+
+actual_resin_block_3:
+  translation: [0.8366329349926548, 0.2155856118595773, 0.3047055961496255] #0.045 cm + dx
+  quaternion: [ -0.013561674385953617, -0.7052453532849199, 0.7087364221844852, 0.011736972653426816]  #[qx, qy, qz, qw]  
+
+
+
+  
+actual_resin_block_3_delta:
+  reference_frame : "actual_resin_block_3"
+  translation: [0.0, 0.0, 0.01] #0.045 cm + dx 
+  premultiply: True
+
+desired_resin_block_1: 
+    reference_frame : "actual_resin_block_3_delta"
+    translation : [0.06735, -0.1145, 0] #0.0570 + dx, -0.1145 - dy
+    quaternion: [0.0, 0.0, 0.7071, 0.7071]
+
+desired_resin_block_5: 
+    reference_frame : "actual_resin_block_3_delta"
+    translation : [-0.06795, -0.1145, 0] #-0.0570 - dx, -0.1145 - dy
+    quaternion: [0.0, 0.0, -0.7071, 0.7071]
+
+desired_resin_block_2: 
+    reference_frame : "actual_resin_block_3_delta"
+    translation : [0.003,  -0.23, 0] #  -0.2300 - dy
+    quaternion: [0.0, 0.0, -0.7071, 0.7071]
+
+
+
+# 
+# desired_resin_block_1: 
+    # translation : [0.7601302177372306, 0.2167338625293801, 0.42781573580825737] 
+    # quaternion: [-0.5013660976574635, -0.49360308245799567, 0.5186907904279996, -0.48574468296922035]
+# 
+# 
+# desired_resin_block_5: 
+    # translation : [0.8963412591178419, 0.2130735002225968, 0.42916236730385614] 
+    # quaternion: [0.48794254253727004, -0.5075249909599476, 0.4948337700874534, 0.5093819772178896]
+# 
+# desired_resin_block_2: 
+    # translation : [0.8263187147583608, 0.21329416370517615, 0.5380644949164888]
+    # quaternion: [0.4889315345983573, -0.5092600705083867, 0.4828667071560593, 0.5181118394529818]
+
+scale_time_simulation: 0.25
+
+
+# Task sequence for assembling
+task_sequence:
+  # - yaml_file: "config/task_retrieve_base_construction.yaml"
+  #   description: "Retrieve base construction"
+  - yaml_file: "config/task_resin_block_3.yaml"
+    description: "Resin block 3"
+  # - yaml_file: "config/task_resin_block_1.yaml"
+  #   description: "Resin block 1"
+  # - yaml_file: "config/task_resin_block_5.yaml"
+  #   description: "Resin block 5"
+  # - yaml_file: "config/task_resin_block_2.yaml"
+  #   description: "Resin block 2"
+
+# task_sequence:
+#   - yaml_file: "config/task_resin_block_3_high_moments.yaml"
+#     description: "Resin block 3"

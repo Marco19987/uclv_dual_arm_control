@@ -1,0 +1,8 @@
+build/
+install/
+log/
+*.asv
+.vscode/
+__pycache__/
+*.pyc
+rosbag2_*/

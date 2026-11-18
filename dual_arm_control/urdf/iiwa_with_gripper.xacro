@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot name="iiwa7" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default="iiwa_"/>
+
+  <link name="world"/>
+  <xacro:include filename="$(find dual_arm_control)/urdf/iiwa7_macro.xacro"/>
+  <xacro:iiwa7 prefix=""/>
+  <joint name="world_to_iiwa_link0" type="fixed">
+    <parent link="world"/>
+    <child link="iiwa_link0"/>
+  </joint>
+
+  <xacro:include filename="$(find dual_arm_control)/urdf/gripper_iiwa.xacro"/>
+  <xacro:gripper_iiwa parent="iiwa_link8" prefix="$(arg prefix)"/>
+</robot>

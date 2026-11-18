@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<robot name="motoman_sia5d" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:arg name="prefix" default=""/>
+  <xacro:include filename="$(find dual_arm_control)/urdf/sia5d_macro.xacro"/>
+  <xacro:motoman_sia5d prefix="$(arg prefix)"/>
+
+  <xacro:include filename="$(find dual_arm_control)/urdf/gripper_yaskawa.xacro"/>
+  <xacro:gripper_yaskawa parent="$(arg prefix)tool0" prefix="$(arg prefix)"/>
+</robot>
