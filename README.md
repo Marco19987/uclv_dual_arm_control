@@ -3,7 +3,11 @@
 **Marco De Simone, Marco Costanzo, Giuseppe De Maria, Ciro Natale**
 Dipartimento di Ingegneria, Università degli Studi della Campania "Luigi Vanvitelli", Aversa, Italy
 
-*IEEE Robotics and Automation Letters, vol. 11, no. 4, pp. 4315–4322, 2026* &nbsp;·&nbsp; [Paper (DOI: 10.1109/LRA.2026.3665445)](https://doi.org/10.1109/LRA.2026.3665445)
+*IEEE Robotics and Automation Letters, vol. 11, no. 4, pp. 4315–4322, 2026* &nbsp;·&nbsp; [Paper (DOI: 10.1109/LRA.2026.3665445)](https://doi.org/10.1109/LRA.2026.3665445) &nbsp;·&nbsp; [Video](https://www.youtube.com/watch?v=tdJzSiXsvN8)
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=tdJzSiXsvN8"><img src="https://img.youtube.com/vi/tdJzSiXsvN8/hqdefault.jpg" alt="Video of the experiments (YouTube)" width="560"></a>
+</p>
 
 <p align="center">
   <img src="docs/images/setup.png" alt="Dual-arm setup: KUKA LBR iiwa 7 and Yaskawa SIA5F cooperatively holding a block" width="700">
